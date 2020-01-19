@@ -4,7 +4,7 @@ pipeline {
     stages {
          stage('build') {
             steps {
-                bat "mvn compiler:compile"
+                bat "compiler:compile"
                 echo 'Building..'
             }
             post{
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test') {
             steps {
-                bat 'mvn test'
+                bat 'test'
                 echo 'Testing..'
             }
             post{
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('couverture') {
             steps {
-                bat "mvn cobertura:cobertura -Dcobertura.report.format=xml"
+                bat "cobertura:cobertura -Dcobertura.report.format=xml"
             }
             post{
             always
