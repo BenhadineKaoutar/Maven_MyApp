@@ -1,10 +1,13 @@
 pipeline {
     agent any
+    tools{
+    maven 'MAVEN'
+    jdk 'jdk1.8.0_221'}
     
     stages {
          stage('Build') {
             steps {
-                bat "compiler:compile"
+                bat "mvn compiler:compile"
                 echo 'Building..'
             }
             post{
@@ -14,7 +17,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'test'
+                bat 'mvn test'
                 echo 'Testing..'
             }
             post{
@@ -23,7 +26,7 @@ pipeline {
         }
         stage('Couverture') {
             steps {
-                bat "cobertura:cobertura -Dcobertura.report.format=xml"
+                bat "mvn cobertura:cobertura -Dcobertura.report.format=xml"
             }
             post{
             always
