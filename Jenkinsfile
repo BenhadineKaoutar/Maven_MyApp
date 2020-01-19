@@ -28,6 +28,11 @@ pipeline {
             steps {
                 bat "mvn cobertura:cobertura -Dcobertura.report.format=xml"
             }
+            post{
+            always {
+                cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
+            }
+            }
             
         }
     }
