@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-         stage('build') {
+         stage('Build') {
             steps {
                 bat "compiler:compile"
                 echo 'Building..'
@@ -12,7 +12,7 @@ pipeline {
             failure{bat " echo ' Erreur lors de la compilation du projet '" }
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
                 bat 'test'
                 echo 'Testing..'
@@ -21,7 +21,7 @@ pipeline {
             always {junit 'target/surefire-reports/*.xml'}
             }
         }
-        stage('couverture') {
+        stage('Couverture') {
             steps {
                 bat "cobertura:cobertura -Dcobertura.report.format=xml"
             }
